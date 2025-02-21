@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pets | ONG AmaPatas</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+          font-family: 'Roboto', sans-serif;
+          background-color: #f8f9fa;
+          padding-top: 80px;
+        }
+
+        .navbar {
+          background-color: #d32f2f;
+        }
+
+        .navbar-brand img {
+          height: 50px;
+          width: auto;
+        }
+
+        .navbar-brand {
+          font-weight: 700;
+          color: #fff;
+          font-size: 1.8rem;
+        }
+
+        .card {
+          background-color: #ffffff;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s;
+        }
+
+        .card:hover {
+          transform: scale(1.03);
+        }
+
+        .card-img-top {
+          height: 220px;
+          object-fit: cover;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+
+        .btn-primary {
+          background-color: #d32f2f;
+          border-color: #d32f2f;
+        }
+
+        .btn-primary:hover {
+          background-color: #b71c1c;
+          border-color: #b71c1c;
+        }
+         footer {
+        background-color: #333; /* Cinza escuro */
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 50px;
+    }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNCJ53-y4tyWYUmgSKaxpuCkpEuG5TijpWgQ&s" alt="Logo da ONG">
+        </a>
+    </div>
+</nav>
+
+<!-- Conteúdo Principal -->
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Pets</h1>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        <p th:text="${message}"></p>
+    </div>
+
+    <a href="/pets/adicionar" class="btn btn-primary mb-4">Adicionar Novo Pet</a>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="pet : ${pets}">
+            <div class="card">
+                <img th:src="@{${pet.foto}}" class="card-img-top" alt="Foto do Pet">
+                <div class="card-body text-center">
+                    <h5 class="card-title" th:text="${pet.nome}"></h5>
+                    <p class="card-text"><strong>Sexo:</strong> <span th:text="${pet.sexo}"></span></p>
+                    <p class="card-text"><strong>Peso:</strong> <span th:text="${pet.peso}"></span> kg</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a th:href="@{/pets/editar/{id}(id=${pet.id})}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{/pets/excluir/{id}(id=${pet.id})}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este pet?');">Excluir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 ONG AmaPatas. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
