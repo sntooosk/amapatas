@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ONG AmaPatas | Home</title>
 
   <!-- Bootstrap 5 -->
@@ -59,6 +60,17 @@
         font-size: 1.3rem;
     }
 
+    /* Responsividade do Banner */
+    @media (max-width: 768px) {
+        .banner h1 {
+            font-size: 2.2rem;
+        }
+
+        .banner p {
+            font-size: 1rem;
+        }
+    }
+
     /* Grid de Pets */
     .card {
         width: 100%;
@@ -76,9 +88,12 @@
         transform: scale(1.03);
     }
 
+    /* Certificando-se que a imagem será quadrada */
     .card-img-top {
-        height: 220px;
-        object-fit: cover;
+        width: 100%;       /* A largura ocupa toda a largura disponível */
+        height: 100%;      /* A altura ocupa 100% da largura */
+        aspect-ratio: 1 / 1; /* Garantir que a imagem seja quadrada */
+        object-fit: cover; /* Garantir que a imagem se ajuste corretamente */
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -96,6 +111,16 @@
         margin-top: 50px;
     }
 
+    /* Responsividade das Cards */
+    @media (max-width: 768px) {
+        .card {
+            min-height: 350px;
+        }
+
+        .card-img-top {
+            height: 180px;
+        }
+    }
   </style>
 </head>
 <body>
@@ -136,7 +161,7 @@
     <p th:text="${message}"></p>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     <div class="col" th:each="pet : ${pets}">
       <div class="card">
         <img th:src="@{${pet.foto}}" class="card-img-top" alt="Foto do Pet">

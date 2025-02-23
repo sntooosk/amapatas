@@ -110,14 +110,4 @@ public class Pet {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-
-    public void atualizarDados(Pet pet) {
-        this.nome = pet.getNome();
-        this.sexo = pet.getSexo();
-        this.peso = pet.getPeso();
-        this.pelagem = pet.getPelagem();
-        this.anoDeNascimento = pet.getAnoDeNascimento();
-        this.raca = pet.getRaca();
-    }
-
 }
